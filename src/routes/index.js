@@ -32,10 +32,10 @@ const routes = [
     path: '/leads',
     component: Leads,
   },
-  {
-    path: '/settings-team',
-    component: Team,
-  },
+  // {
+  //   path: '/settings-team',
+  //   component: Team,
+  // },
   {
     path: '/calendar',
     component: Calendar,
@@ -48,26 +48,26 @@ const routes = [
     path: '/settings-profile',
     component: ProfileSettings,
   },
-  {
-    path: '/settings-billing',
-    component: Bills,
-  },
+  // {
+  //   path: '/settings-billing',
+  //   component: Bills,
+  // },
   {
     path: '/getting-started',
     component: GettingStarted,
   },
-  {
-    path: '/features',
-    component: DocFeatures,
-  },
-  {
-    path: '/components',
-    component: DocComponents,
-  },
-  {
-    path: '/integration',
-    component: Integration,
-  },
+  // {
+  //   path: '/features',
+  //   component: DocFeatures,
+  // },
+  // {
+  //   path: '/components',
+  //   component: DocComponents,
+  // },
+  // {
+  //   path: '/integration',
+  //   component: Integration,
+  // },
   {
     path: '/charts',
     component: Charts,

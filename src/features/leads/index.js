@@ -32,7 +32,6 @@ function Leads(){
         dispatch(getLeadsContent())
     }, [])
 
-    
 
     const getDummyStatus = (index) => {
         if(index % 5 === 0)return <div className="badge">Not Interested</div>
@@ -43,14 +42,14 @@ function Leads(){
     }
 
     const deleteCurrentLead = (index) => {
-        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION, 
+        dispatch(openModal({title : "Confirmation", bodyType : MODAL_BODY_TYPES.CONFIRMATION,
         extraObject : { message : `Are you sure you want to delete this lead?`, type : CONFIRMATION_MODAL_CLOSE_TYPES.LEAD_DELETE, index}}))
     }
 
     return(
         <>
-            
-            <TitleCard title="Current Leads" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
+
+            <TitleCard title="Current Products" topMargin="mt-2" TopSideButtons={<TopSideButtons />}>
 
                 {/* Leads List in table format loaded from slice after api call */}
             <div className="overflow-x-auto w-full">

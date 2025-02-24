@@ -1,4 +1,5 @@
-import {useState, useRef} from 'react'
+import {useState} from 'react'
+import axios from 'axios';
 import {Link} from 'react-router-dom'
 import LandingIntro from './LandingIntro'
 import ErrorText from  '../../components/Typography/ErrorText'
@@ -23,10 +24,27 @@ function Login(){
         if(loginObj.password.trim() === "")return setErrorMessage("Password is required! (use any value)")
         else{
             setLoading(true)
-            // Call API to check user credentials and save token in localstorage
-            localStorage.setItem("token", "DumyTokenHere")
-            setLoading(false)
-            window.location.href = '/app/welcome'
+            axios.post('/api/v1/auth/login',
+                {
+                    email: loginObj.emailId,
+                    password: loginObj.password
+                }, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                },
+              })
+              .then(function (response) {
+                setLoading(false)
+                console.log(response);
+                localStorage.setItem("token", response.data.token)
+                window.location.href = '/app/welcome'
+              })
+              .catch(function (error) {
+                setLoading(false)
+                console.log(error);
+              });
+
         }
     }
 
