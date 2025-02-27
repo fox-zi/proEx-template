@@ -17,7 +17,7 @@ function GettingStartedContent(){
 
               {/* Introduction */}
               <h2 className="" id="getstarted1">Introduction</h2>
-              <p>A free dashboard template using <span className='font-bold'>Daisy UI</span> and react js. With the help of Dasisy UI, it comes with <span className='font-bold'>fully customizable and themable CSS</span> and power of Tailwind CSS utility classes. We have also added <span className='font-bold'>redux toolkit</span>  and configured it for API calls and state management.</p> 
+              <p>A free dashboard template using <span className='font-bold'>Daisy UI</span> and react js. With the help of Dasisy UI, it comes with <span className='font-bold'>fully customizable and themable CSS</span> and power of Tailwind CSS utility classes. We have also added <span className='font-bold'>redux toolkit</span>  and configured it for API calls and state management.</p>
               <p>User authentication has been implemented using JWT token method (ofcourse you need backend API for generating and verifying token). This template can be used to start your next SaaS project or build new internal tools in your company.</p>
               <h4> Core libraries used - </h4>
               <ul>
@@ -40,7 +40,7 @@ function GettingStartedContent(){
                   <li> <span className='font-bold'>Right and left sidebar</span>, Universal loader, notifications and other components</li>
                   <li> React <span className='font-bold'>chart js 2</span> examples</li>
               </ul>
-              
+
 
 
 
@@ -66,7 +66,7 @@ function GettingStartedContent(){
               <h2 id="getstarted4">Daisy UI</h2>
 
               <p><a href="https://daisyui.com/" target="_blank" className='text-xl btn-link'>Daisy UI</a>, a popular free and opensource tailwind component library has been used for this template. It has a rich collection of components, layouts and is fully customizable and themeable.</p>
-              
+
               <p>Apart from this it also helps in making HTML code more cleaner as we don't have to include all utility classes of tailwind to make the UI. Check components <a href="https://daisyui.com/components/button/" target="_blank" className='btn-link'>documentation here</a>. For Ex- </p>
 
               <div className='text-center'>
@@ -78,17 +78,17 @@ function GettingStartedContent(){
                         <p className='text-center font-semibold'> using only utility classes of tailwind</p>
                         <div className="mockup-code text-justify mb-4">
                           <pre className='my-0 py-0'><code>{'<a className="inline-block px-4 py-3 \n text-sm font-semibold text-center \n text-white uppercase transition duration-200 \n ease-in-out bg-indigo-600 \n rounded-md cursor-pointer \n hover:bg-indigo-700">Button</a>'}</code></pre>
-                        </div> 
+                        </div>
                         <button className="inline-block  px-4 py-3  text-sm font-semibold text-center  text-white uppercase transition duration-200  ease-in-out bg-indigo-600  rounded-md cursor-pointer  hover:bg-indigo-700">Button</button>
                   </div>
 
-                  <div className="divider"></div> 
+                  <div className="divider"></div>
 
                   <div className='grid w-full flex-grow'>
                       <p className='text-center font-semibold'>using daisyUI component classes</p>
                         <div className="mockup-code mb-4">
                           <pre className='my-0 py-0'><code>{'<a className="btn btn-primary">\nButton</a>'}</code></pre>
-                        </div> 
+                        </div>
                         <button className="btn btn-primary">Button</button>
                   </div>
                 </div>
