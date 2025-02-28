@@ -76,7 +76,7 @@ function Transactions(){
 
     return(
         <>
-            
+
             <TitleCard title="Recent Transactions" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} applyFilter={applyFilter} removeFilter={removeFilter}/>}>
 
                 {/* Team Member list in table format loaded constant */}

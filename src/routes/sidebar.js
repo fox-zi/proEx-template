@@ -35,11 +35,6 @@ const routes = [
     name: 'Products', // name that appear in Sidebar
   },
   {
-    path: '/app/transactions', // url
-    icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
-    name: 'Transactions', // name that appear in Sidebar
-  },
-  {
     path: '/app/charts', // url
     icon: <ChartBarIcon className={iconClasses}/>, // icon component
     name: 'Analytics', // name that appear in Sidebar

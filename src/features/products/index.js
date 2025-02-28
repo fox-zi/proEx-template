@@ -1,11 +1,14 @@
 import moment from "moment"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import TitleCard from "../../components/Cards/TitleCard"
 import { openModal } from "../common/modalSlice"
 import { deleteProduct, getProducts } from "./productSlice"
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/globalConstantUtil'
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
+import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon'
+import EyeIcon from '@heroicons/react/24/outline/EyeIcon'
 import { showNotification } from '../common/headerSlice'
 
 const TopSideButtons = () => {
@@ -27,6 +30,7 @@ function Products() {
 
     const { products } = useSelector(state => state.product)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(getProducts())
@@ -49,6 +53,10 @@ function Products() {
         }))
     }
 
+    const showExpensesProduct = (id) => {
+        navigate(`/app/products/${id}/expenses`)
+    }
+
     return (
         <>
 
@@ -64,7 +72,7 @@ function Products() {
                                 <th>Default</th>
                                 <th>Date</th>
                                 <th>Created At</th>
-                                <th></th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +92,11 @@ function Products() {
                                             <td>{l.default?.toString()}</td>
                                             <td>{moment(new Date(l.date)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
                                             <td>{moment(new Date(l.created_at)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
-                                            <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><TrashIcon className="w-5" /></button></td>
+                                            <td>
+                                                <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><EyeIcon className="w-5" /></button>
+                                                <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><TrashIcon className="w-5" /></button>
+                                                <button className="btn btn-square btn-ghost" onClick={() => showExpensesProduct(l.id)}><BanknotesIcon className="w-5" /></button>
+                                            </td>
                                         </tr>
                                     )
                                 })
