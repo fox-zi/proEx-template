@@ -8,7 +8,7 @@ import { addProduct, addNewProduct } from "../productSlice"
 const INITIAL_PRODUCT_OBJ = {
     name : "",
     color : "",
-    date : "",
+    date: new Date().toISOString().split('T')[0],
     price: 0,
 }
 
@@ -52,7 +52,7 @@ function AddProductModalBody({closeModal}){
 
             <InputText type="color" defaultValue={productObj.color} updateType="color" containerStyle="mt-4 bd-4" labelTitle="Color" updateFormValue={updateFormValue}/>
 
-            <InputText type="number" defaultValue={productObj.price} updateType="price" containerStyle="mt-4" labelTitle="Price" updateFormValue={updateFormValue}/>
+            <InputText type="price" defaultValue={productObj.price} updateType="price" containerStyle="mt-4" labelTitle="Price" updateFormValue={updateFormValue}/>
 
             <InputText type="date" defaultValue={productObj.date} updateType="date" containerStyle="mt-4" labelTitle="Date" updateFormValue={updateFormValue}/>
 

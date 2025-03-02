@@ -5,7 +5,14 @@ function InputText({labelTitle, labelStyle, type, containerStyle, defaultValue, 
 
     const [value, setValue] = useState(defaultValue)
 
+    const formatValue = (value) => { return new Intl.NumberFormat("vi-VN").format(value) }
+
     const updateInputValue = (val) => {
+
+        if (type === 'price') {
+            const numericValue = val.replace(/\D/g, "");
+            val = formatValue(numericValue)
+        }
         setValue(val)
         updateFormValue({updateType, value : val})
     }

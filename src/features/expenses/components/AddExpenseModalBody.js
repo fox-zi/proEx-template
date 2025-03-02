@@ -7,7 +7,7 @@ import { createExpensesApi, addNewExpense } from "../expenseSlice"
 
 const INITIAL_EXPENSE_OBJ = {
     name: "",
-    date: "",
+    date: new Date().toISOString().split('T')[0],
     price: 0
 }
 

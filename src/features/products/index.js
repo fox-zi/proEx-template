@@ -93,7 +93,7 @@ function Products() {
                                             <td>{moment(new Date(l.date), 'days').format("DD MMM YY")}</td>
                                             <td>{moment(new Date(l.created_at), 'days').format("DD MMM YY")}</td>
                                             <td>
-                                                <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><EyeIcon className="w-5" /></button>
+                                                {/* <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><EyeIcon className="w-5" /></button> */}
                                                 <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><TrashIcon className="w-5" /></button>
                                                 <button className="btn btn-square btn-ghost" onClick={() => showExpensesProduct(l.id)}><BanknotesIcon className="w-5" /></button>
                                             </td>
