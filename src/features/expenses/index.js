@@ -9,15 +9,22 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import { useParams } from "react-router-dom"
 import SearchBar from "../../components/Input/SearchBar"
 
-const TopSideButtons = ({applySearch, searchText, setSearchText}) => {
+const TopSideButtons = ({applySearch, searchText, setSearchText, productId}) => {
+    const dispatch = useDispatch()
+
     useEffect(() => {
         if (searchText.length >= 3 || searchText.length === 0) {
             applySearch()
         }
     }, [searchText])
 
+    const openAddNewExpenseModal = () => {
+        dispatch(openModal({ title: "Add New Expense", bodyType: MODAL_BODY_TYPES.EXPENSE_ADD_NEW, extraObject: { productId: productId } }))
+    }
+
     return(
         <div className="inline-block float-right">
+            <button className="btn px-6 btn-sm normal-case btn-primary mr-4" onClick={() => openAddNewExpenseModal()}>Add New</button>
             <SearchBar searchText={searchText} styleClass="mr-4" setSearchText={setSearchText}/>
         </div>
     )
@@ -43,7 +50,7 @@ function Expenses() {
     const deleteCurrentExpense = (index, id) => {
         dispatch(openModal({
             title: "Confirmation", bodyType: MODAL_BODY_TYPES.CONFIRMATION,
-            extraObject: { id: id, message: `Are you sure you want to delete this Expenses?`, type: CONFIRMATION_MODAL_CLOSE_TYPES.ESPENSE_DELETE, index }
+            extraObject: { parentId: productId, id: id, message: `Are you sure you want to delete this Expenses?`, type: CONFIRMATION_MODAL_CLOSE_TYPES.EXPENSE_DELETE, index }
         }))
     }
 
@@ -83,7 +90,7 @@ function Expenses() {
     return (
         <>
 
-            <TitleCard title="Recent Transactions" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} searchText={searchText} setSearchText={setSearchText}/>}>
+            <TitleCard title="Recent Transactions" topMargin="mt-2" TopSideButtons={<TopSideButtons applySearch={applySearch} searchText={searchText} setSearchText={setSearchText} productId={productId}/>}>
 
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
@@ -119,8 +126,8 @@ function Expenses() {
                                         <tr key={k}>
                                             <td>{l.name}</td>
                                             <td>{l.price}</td>
-                                            <td>{moment(new Date(l.date)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
-                                            <td>{moment(new Date(l.created_at)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
+                                            <td>{moment(new Date(l.date), 'days').format("DD MMM YY")}</td>
+                                            <td>{moment(new Date(l.created_at), 'days').format("DD MMM YY")}</td>
                                             <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentExpense(k, l.id)}><TrashIcon className="w-5" /></button></td>
                                         </tr>
                                     )

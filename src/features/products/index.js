@@ -90,8 +90,8 @@ function Products() {
                                             </td>
                                             <td>{l.price}</td>
                                             <td>{l.default?.toString()}</td>
-                                            <td>{moment(new Date(l.date)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
-                                            <td>{moment(new Date(l.created_at)).add(-5 * (k + 2), 'days').format("DD MMM YY")}</td>
+                                            <td>{moment(new Date(l.date), 'days').format("DD MMM YY")}</td>
+                                            <td>{moment(new Date(l.created_at), 'days').format("DD MMM YY")}</td>
                                             <td>
                                                 <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><EyeIcon className="w-5" /></button>
                                                 <button className="btn btn-square btn-ghost" onClick={() => deleteCurrentProduct(k, l.id)}><TrashIcon className="w-5" /></button>

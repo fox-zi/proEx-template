@@ -3,7 +3,7 @@ module.exports = Object.freeze({
     MODAL_BODY_TYPES : {
         USER_DETAIL : "USER_DETAIL",
         PRODUCT_ADD_NEW : "PRODUCT_ADD_NEW",
-        ESPENSE_ADD_NEW : "ESPENSE_ADD_NEW",
+        EXPENSE_ADD_NEW : "EXPENSE_ADD_NEW",
         CONFIRMATION : "CONFIRMATION",
         DEFAULT : "",
     },
@@ -15,7 +15,7 @@ module.exports = Object.freeze({
 
     CONFIRMATION_MODAL_CLOSE_TYPES : {
         PRODUCT_DELETE : "PRODUCT_DELETE",
-        ESPENSE_DELETE : "ESPENSE_DELETE",
+        EXPENSE_DELETE : "EXPENSE_DELETE"
     },
 
     MESSAGE_API: {

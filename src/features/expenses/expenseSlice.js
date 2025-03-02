@@ -9,9 +9,9 @@ export const getExpensesApi = createAsyncThunk('/expenses/index', async (params)
 	return response.data;
 })
 
-export const createExpensesApi = createAsyncThunk('/expenses/create', async (productId, expenseData, { rejectWithValue }) => {
+export const createExpensesApi = createAsyncThunk('/expenses/create', async (expenseData, { rejectWithValue }) => {
     try {
-        const response = await axios.post(`/api/v1/products/${productId}/expenses`, expenseData);
+        const response = await axios.post(`/api/v1/products/${expenseData.productId}/expenses`, expenseData);
         return response.data;
     } catch (error) {
         if (error.response) {
@@ -21,9 +21,10 @@ export const createExpensesApi = createAsyncThunk('/expenses/create', async (pro
     }
 });
 
-export const deleteExpensesApi = createAsyncThunk('/expenses/delete', async (productId, expenseId, { rejectWithValue }) => {
+export const deleteExpensesApi = createAsyncThunk('/expenses/delete', async (params, { rejectWithValue }) => {
     try {
-        const response = await axios.delete(`/api/v1/products/${productId}/expenses/${expenseId}`);
+        const { parentId, id } = params
+        const response = await axios.delete(`/api/v1/products/${parentId}/expenses/${id}`);
         return response.data; // Ensure the response data is returned
     } catch (error) {
         if (error.response) {
@@ -41,12 +42,12 @@ export const expenseSlice = createSlice({
         expenses : []
     },
     reducers: {
-        addNewProduct: (state, action) => {
+        addNewExpense: (state, action) => {
             let { data } = action.payload
             state.expenses = [data, ...state.expenses]
         },
 
-        deleteProduct: (state, action) => {
+        deleteExpense: (state, action) => {
             let {index} = action.payload
             state.expenses.splice(index, 1)
         }
@@ -66,6 +67,6 @@ export const expenseSlice = createSlice({
     }
 })
 
-export const { addNewProduct, deleteProduct } = expenseSlice.actions
+export const { addNewExpense, deleteExpense } = expenseSlice.actions
 
 export default expenseSlice.reducer

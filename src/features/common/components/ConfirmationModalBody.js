@@ -3,12 +3,13 @@ import axios from 'axios'
 import { CONFIRMATION_MODAL_CLOSE_TYPES, MESSAGE_API } from '../../../utils/globalConstantUtil'
 import { deleteProduct, deleteProductApi } from '../../products/productSlice'
 import { showNotification } from '../headerSlice'
+import { deleteExpense, deleteExpensesApi } from '../../expenses/expenseSlice'
 
 function ConfirmationModalBody({ extraObject, closeModal}){
 
     const dispatch = useDispatch()
 
-    const { message, type, id, index} = extraObject
+    const { message, type, id, index, parentId} = extraObject
 
 
     const proceedWithYes = async() => {
@@ -22,6 +23,16 @@ function ConfirmationModalBody({ extraObject, closeModal}){
             }
             dispatch(showNotification({message : resultAction.payload.message, status : 0}))
 
+        } else if (type === CONFIRMATION_MODAL_CLOSE_TYPES.EXPENSE_DELETE){
+            const params = { parentId: parentId, id: id }
+            const resultAction = await dispatch(deleteExpensesApi(params));
+            closeModal()
+            if (resultAction.payload?.data?.message === MESSAGE_API.DELETED_SUCCESS) {
+                dispatch(deleteExpense({index}))
+                dispatch(showNotification({message : "Expense Deleted!", status : 1}))
+                return
+            }
+            dispatch(showNotification({message : resultAction.payload.message, status : 0}))
         }
     }
 
