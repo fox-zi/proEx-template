@@ -33,6 +33,11 @@ const checkAuth = () => {
     document.body.classList.remove('loading-indicator');
     return response;
   }, function (error) {
+    if (error.response.status === 401) {
+      localStorage.clear()
+      window.location.href = '/login'
+      return
+    }
     document.body.classList.remove('loading-indicator');
     return Promise.reject(error);
   });
