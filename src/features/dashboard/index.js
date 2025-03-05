@@ -27,7 +27,7 @@ const statsData = [
 function Dashboard(){
 
     const dispatch = useDispatch()
- 
+
 
     const updateDashboardPeriod = (newRange) => {
         // Dashboard range changed, write code to refresh your values
@@ -38,7 +38,7 @@ function Dashboard(){
         <>
         {/** ---------------------- Select Period Content ------------------------- */}
             <DashboardTopBar updateDashboardPeriod={updateDashboardPeriod}/>
-        
+
         {/** ---------------------- Different stats content 1 ------------------------- */}
             <div className="grid lg:grid-cols-4 mt-2 md:grid-cols-2 grid-cols-1 gap-6">
                 {
@@ -57,16 +57,16 @@ function Dashboard(){
                 <LineChart />
                 <BarChart />
             </div>
-            
+
         {/** ---------------------- Different stats content 2 ------------------------- */}
-        
+
             <div className="grid lg:grid-cols-2 mt-10 grid-cols-1 gap-6">
                 <AmountStats />
                 <PageStats />
             </div>
 
         {/** ---------------------- User source channels table  ------------------------- */}
-        
+
             <div className="grid lg:grid-cols-2 mt-4 grid-cols-1 gap-6">
                 <UserChannels />
                 <DoughnutChart />

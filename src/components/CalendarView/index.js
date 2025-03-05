@@ -7,6 +7,7 @@ import { formatValue } from '../../utils/priceFormat';
 import { FORMAT_DATE } from '../../utils/globalConstantUtil';
 import { useDispatch, useSelector } from 'react-redux'
 import { getReportExpensesApi } from "../../features//calendar/reportExpensesSlice"
+import MonthlyExpenses from "../../features/calendar/components/MonthlyExpenses"
 
 const THEME_BG = CALENDAR_EVENT_STYLE
 
@@ -25,7 +26,7 @@ function CalendarView({ openDayDetail }) {
     "col-start-7",];
 
   const [firstDayOfMonth, setFirstDayOfMonth] = useState(moment().startOf('month'))
-  const [currMonth, setCurrMonth] = useState(() => moment(today).format("MMM-yyyy"));
+  const [currMonth, setCurrMonth] = useState(() => moment(today).format(FORMAT_DATE.MONTH_YEAR));
   const { data } = useSelector(state => state.reportExpenses);
   const events = data?.[currMonth] || [];
 
@@ -58,7 +59,6 @@ function CalendarView({ openDayDetail }) {
   }
 
   const getEventsForCurrentDate = (date) => {
-
     let filteredEvents = filterDateByDay(date)
     if (filteredEvents.length > 2) {
       let originalLength = filteredEvents.length
@@ -145,16 +145,15 @@ function CalendarView({ openDayDetail }) {
                 <p className={`inline-block flex items-center  justify-center h-8 w-8 rounded-full mx-1 mt-1 text-sm cursor-pointer hover:bg-base-300 ${isToday(day) && " bg-blue-100 dark:bg-blue-400 dark:hover:bg-base-300 dark:text-white"} ${isDifferentMonth(day) && " text-slate-400 dark:text-slate-600"}`}> {moment(day).format("D")}</p>
                 {
                   getEventsForCurrentDate(day).map((e, k) => {
-                    return <p key={k} onClick={() => openAllEventsDetail(day, e.theme)} className={`text-xs px-2 mt-1 truncate  ${THEME_BG[e.theme] || ""}`}>{combileTitle(e)}</p>
+                    return <p key={k} onClick={() => openAllEventsDetail(day, e.theme)} className={`text-xs px-2 mt-1 truncate text-right ${THEME_BG[e.theme] || ""}`}>{e.price ? formatValue(e.price) : e.name}</p>
                   })
                 }
               </div>
             );
           })}
         </div>
-
-
       </div>
+      <MonthlyExpenses expenses={events} />
     </>
   )
 }
