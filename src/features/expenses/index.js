@@ -8,6 +8,7 @@ import { CONFIRMATION_MODAL_CLOSE_TYPES, MODAL_BODY_TYPES } from '../../utils/gl
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import { useParams } from "react-router-dom"
 import SearchBar from "../../components/Input/SearchBar"
+import { formatValue } from '../../utils/priceFormat';
 
 const TopSideButtons = ({applySearch, searchText, setSearchText, productId}) => {
     const dispatch = useDispatch()
@@ -125,7 +126,7 @@ function Expenses() {
                                     return (
                                         <tr key={k}>
                                             <td>{l.name}</td>
-                                            <td>{l.price}</td>
+                                            <td>{formatValue(l.price)}</td>
                                             <td>{moment(new Date(l.date), 'days').format("DD MMM YY")}</td>
                                             <td>{moment(new Date(l.created_at), 'days').format("DD MMM YY")}</td>
                                             <td><button className="btn btn-square btn-ghost" onClick={() => deleteCurrentExpense(k, l.id)}><TrashIcon className="w-5" /></button></td>

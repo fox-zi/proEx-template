@@ -49,7 +49,7 @@ function AddExpenseModalBody({ extraObject, closeModal }) {
 
             <InputText type="text" defaultValue={expenseObj.name} updateType="name" containerStyle="mt-4" labelTitle="Name" updateFormValue={updateFormValue} />
 
-            <InputText type="number" defaultValue={expenseObj.price} updateType="price" containerStyle="mt-4" labelTitle="Price" updateFormValue={updateFormValue} />
+            <InputText type="price" defaultValue={expenseObj.price} updateType="price" containerStyle="mt-4" labelTitle="Price" updateFormValue={updateFormValue} />
 
             <InputText type="date" defaultValue={expenseObj.date} updateType="date" containerStyle="mt-4" labelTitle="Date" updateFormValue={updateFormValue} />
 

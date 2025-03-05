@@ -10,6 +10,7 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon'
 import EyeIcon from '@heroicons/react/24/outline/EyeIcon'
 import { showNotification } from '../common/headerSlice'
+import { formatValue } from '../../utils/priceFormat';
 
 const TopSideButtons = () => {
 
@@ -88,7 +89,7 @@ function Products() {
                                                     >{l.color}
                                                 </span>
                                             </td>
-                                            <td>{l.price}</td>
+                                            <td>{formatValue(l.price)}</td>
                                             <td>{l.default?.toString()}</td>
                                             <td>{moment(new Date(l.date), 'days').format("DD MMM YY")}</td>
                                             <td>{moment(new Date(l.created_at), 'days').format("DD MMM YY")}</td>

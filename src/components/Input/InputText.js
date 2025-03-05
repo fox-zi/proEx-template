@@ -1,11 +1,10 @@
 import { useState } from "react"
+import { formatValue } from '../../utils/priceFormat';
 
 
-function InputText({labelTitle, labelStyle, type, containerStyle, defaultValue, placeholder, updateFormValue, updateType}){
+function InputText({ labelTitle, labelStyle, type, containerStyle, defaultValue, placeholder, updateFormValue, updateType }) {
 
     const [value, setValue] = useState(defaultValue)
-
-    const formatValue = (value) => { return new Intl.NumberFormat("vi-VN").format(value) }
 
     const updateInputValue = (val) => {
 
@@ -14,15 +13,15 @@ function InputText({labelTitle, labelStyle, type, containerStyle, defaultValue, 
             val = formatValue(numericValue)
         }
         setValue(val)
-        updateFormValue({updateType, value : val})
+        updateFormValue({ updateType, value: val })
     }
 
-    return(
+    return (
         <div className={`form-control w-full ${containerStyle}`}>
             <label className="label">
                 <span className={"label-text text-base-content " + labelStyle}>{labelTitle}</span>
             </label>
-            <input type={type || "text"} value={value} placeholder={placeholder || ""} onChange={(e) => updateInputValue(e.target.value)}className="input  input-bordered w-full " />
+            <input type={type || "text"} value={value} placeholder={placeholder || ""} onChange={(e) => updateInputValue(e.target.value)} className="input  input-bordered w-full " />
         </div>
     )
 }
