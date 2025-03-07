@@ -1,18 +1,19 @@
 import React from "react";
 import DashboardStats from '../../dashboard/components/DashboardStats'
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import { formatValue } from '../../../utils/priceFormat';
 
-const statsData = [
-    { title: "Thu nhập", value: "123.123.123", icon: <UserGroupIcon className='w-8 h-8' />, description: "↗︎ 2300 (22%)" },
-    { title: "Chi tiêu", value: "123.123.123", icon: <CircleStackIcon className='w-8 h-8' />, description: "50 in hot leads" },
-    { title: "Tổng", value: "123.123.123", icon: <UsersIcon className='w-8 h-8' />, description: "↙ 300 (18%)" },
-]
-
-const MonthlyExpenses = ({ expenses }) => {
-
+const MonthlyExpenses = ({ expenses, summary }) => {
+    const statsData = () => {
+        if (!summary) return []
+        const icon = Number(summary.remaining) > 0 ? '↗︎' : '↙'
+        return [
+            { title: "Thu nhập", value: formatValue(summary.income), icon: <CircleStackIcon className='w-8 h-8' />, description: `${summary.countIncome} in hot income`, customColor: false },
+            { title: "Chi tiêu", value: formatValue(summary.expenses), icon: <CircleStackIcon className='w-8 h-8' />, description: `${summary.countExpenses} in hot expense`, customColor: false },
+            { title: "Tổng", value: formatValue(summary.remaining), icon: <UsersIcon className='w-8 h-8' />, description: `${icon} (${summary.averageExpense}%)`, customColor: true },
+        ]
+    }
     const groupedByDate = () => {
         return expenses.reduce((result, item) => {
             // Initialize array for this date if it doesn't exist
@@ -45,7 +46,7 @@ const MonthlyExpenses = ({ expenses }) => {
     const expneseItem = (expensesDate) => {
         return expensesDate.map((expense) => (
             <div key={expense.id} className="flex justify-between p-2">
-                <span>{expense.product.name} - {expense.name}</span>
+                <span>{expense.product.name} ({expense.name})</span>
                 <span className="float-right">{ formatValue(expense.price) }</span>
             </div>
         ))
@@ -54,10 +55,11 @@ const MonthlyExpenses = ({ expenses }) => {
     return (
         <>
             <div className="grid lg:grid-cols-3 mt-4 md:grid-cols-2 grid-cols-1 gap-6">
+
                 {
-                    statsData.map((d, k) => {
+                    statsData().map((d, k) => {
                         return (
-                            <DashboardStats key={k} {...d} colorIndex={k} />
+                            <DashboardStats key={k} {...d} colorIndex={k} customColor={d.customColor}/>
                         )
                     })
                 }

@@ -6,7 +6,7 @@ import { CALENDAR_EVENT_STYLE } from "./util";
 import { formatValue } from '../../utils/priceFormat';
 import { FORMAT_DATE } from '../../utils/globalConstantUtil';
 import { useDispatch, useSelector } from 'react-redux'
-import { getReportExpensesApi } from "../../features//calendar/reportExpensesSlice"
+import { getReportExpensesApi, getSummaryReportExpensesApi } from "../../features//calendar/reportExpensesSlice"
 import MonthlyExpenses from "../../features/calendar/components/MonthlyExpenses"
 
 const THEME_BG = CALENDAR_EVENT_STYLE
@@ -27,12 +27,14 @@ function CalendarView({ openDayDetail }) {
 
   const [firstDayOfMonth, setFirstDayOfMonth] = useState(moment().startOf('month'))
   const [currMonth, setCurrMonth] = useState(() => moment(today).format(FORMAT_DATE.MONTH_YEAR));
-  const { data } = useSelector(state => state.reportExpenses);
+  const { data, summary } = useSelector(state => state.reportExpenses);
   const events = data?.[currMonth] || [];
+  const summaryEvents = summary?.[currMonth] || [];
 
   useEffect(() => {
     if (!events.length) {
       dispatch(getReportExpensesApi(currMonth));
+      dispatch(getSummaryReportExpensesApi(currMonth));
     }
   }, [dispatch, currMonth, events.length]);
 
@@ -153,7 +155,7 @@ function CalendarView({ openDayDetail }) {
           })}
         </div>
       </div>
-      <MonthlyExpenses expenses={events} />
+      <MonthlyExpenses expenses={events} summary={summaryEvents} />
     </>
   )
 }
